@@ -14,9 +14,9 @@
     "contentful"
   ],
   "scripts": {
-    "migrate:contentful": "node ./contentful-migrations/index.js",
-    "import:contentful": "contentful space import --space-id %CONTENTFUL_SPACE_ID% --mt %CONTENTFUL_ACCESS_TOKEN% --content-file  ./data/contentful-seed.json",
-    "seed:contentful": "dotenv -- npm run import:contentful",
+    "migrate:contentful": "./contentful-migrations/index.js",
+    "import:contentful": "contentful space import --space-id $CONTENTFUL_SPACE_ID --mt $CONTENTFUL_ACCESS_TOKEN --content-file  ./data/contentful-seed.json",
+    "seed:contentful": "dotenv-run-script .env -- import:contentful",
     "clean": "cross-env ./node_modules/.bin/rimraf dist",
     "build": "cross-env npm run clean && tsc -p tsconfig.json",
     "watch": "cross-env tsc --watch",
@@ -37,6 +37,7 @@
     "@medusajs/medusa": "^1.12.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "dotenv-run-script": "^0.2.0",
     "express": "^4.17.2",
     "medusa-file-s3": "^1.2.0",
     "medusa-fulfillment-manual": "^1.1.37",
